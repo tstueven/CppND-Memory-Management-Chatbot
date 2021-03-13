@@ -42,9 +42,6 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
-
 ChatBot::ChatBot(const ChatBot &other)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
@@ -83,6 +80,8 @@ ChatBot::ChatBot(ChatBot &&other)
     other._currentNode = nullptr;
     other._rootNode = nullptr;
     other._chatLogic = nullptr;
+
+    _chatLogic->SetChatbotHandle(this);
 }
 ChatBot &ChatBot::operator=(ChatBot &&other)
 {
@@ -103,11 +102,10 @@ ChatBot &ChatBot::operator=(ChatBot &&other)
     other._rootNode = nullptr;
     other._chatLogic = nullptr;
 
+    _chatLogic->SetChatbotHandle(this);
+
     return *this;
 }
-
-////
-//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
